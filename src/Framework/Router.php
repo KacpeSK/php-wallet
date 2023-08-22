@@ -4,20 +4,22 @@ declare(strict_types=1);
 
 namespace Framework;
 
+use App\Controllers\HomeController;
+
 class Router
 {
     private array $routes = [];
 
-    public function add(string $method, string $path, array $controller) 
+    public function add(string $method, string $path, array $controller)
     {
         $path = $this->normalizePath($path);
         $this->routes[] = [
-            "method" => strtoupper($method),
             "path" => $path,
-            "controller" => $controller,
+            "method" => strtoupper($method),
+            "controller" => $controller
         ];
     }
-     public function normalizePath (string $path) : string
+    public function normalizePath(string $path): string
     {
         $path = trim($path, "/");
         $path = "/{$path}/";
@@ -31,10 +33,19 @@ class Router
         $path = $this->normalizePath($path);
         $method = strtoupper($method);
 
-        foreach($this->routes as $route) {
-            if  (preg_match("#^{$route["path"]}$#", $path)) {
-
+        foreach ($this->routes as $route) {
+            if (
+                !preg_match("#^{$route["path"]}$#", $path) ||
+                $route["method"] !== $method
+            ) {
+                continue;
             }
+
+            [$class, $function] = $route["controller"];
+
+            $controllerInstance = new $class;
+
+            $controllerInstance->{$function}();
         }
     }
 }
