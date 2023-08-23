@@ -6,17 +6,16 @@ namespace App\Controllers;
 
 use Framework\TemplateEngine;
 
-class AboutController
+class RegisterController
 {
     public function __construct(private TemplateEngine $view)
     {
     }
 
-    public function about()
+    public function register()
     {
-        echo $this->view->render("/about.php", [
-            "title" => "About",
-            "dangerousData" => "<script>alert(123)</script>"
+        echo $this->view->render("/register.php", [
+            "title" => "Register"
         ]);
     }
 }
