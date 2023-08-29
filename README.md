@@ -1,2 +1,2 @@
 # phpiggy
- A PHP application for tracking expanses.
+ A PHP application for tracking expenses.
