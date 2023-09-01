@@ -5,13 +5,15 @@ declare(strict_types=1);
 namespace App\Controllers;
 
 use Framework\TemplateEngine;
-use App\Services\ValidatorService;
+use App\Services\{ValidatorService, UserService};
+
 
 class RegisterController
 {
     public function __construct(
         private TemplateEngine $view,
-        private ValidatorService $validatorService
+        private ValidatorService $validatorService,
+        private UserService $userService
     ) {
     }
 
@@ -25,5 +27,11 @@ class RegisterController
     public function register()
     {
         $this->validatorService->validateRegister($_POST);
+
+        $this->userService->isEmailTaken($_POST["email"]);
+
+        $this->userService->insertData($_POST);
+
+        redirectTo("/");
     }
 }
