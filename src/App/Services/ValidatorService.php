@@ -34,4 +34,12 @@ class ValidatorService
             "tos" => ["required"]
         ]);
     }
+
+    public function validateLogin(array $loginData)
+    {
+        $this->validator->validate($loginData, [
+            "email" => ["required", "email"],
+            "password" => ["required"]
+        ]);
+    }
 }

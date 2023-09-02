@@ -26,6 +26,7 @@ class UserService
             throw new ValidationException(["email" => "Email Taken"]);
         }
     }
+
     public function insertData(array $formData)
     {
         $password = password_hash($formData["password"], PASSWORD_BCRYPT, ["cost" => 12]);
@@ -41,5 +42,39 @@ class UserService
                 "social_media_url" => $formData["socialMediaURL"]
             ]
         );
+
+        session_regenerate_id();
+
+        $_SESSION["user"] = $this->db->id();
+    }
+
+    public function login(array $loginData)
+    {
+        $user = $this->db->query(
+            "SELECT * FROM users WHERE email = :email",
+            [
+                "email" => $loginData["email"],
+            ]
+        )->find();
+
+        $passwordsMatch = password_verify(
+            $loginData["password"],
+            $user["password"] ?? ""
+        );
+
+        if (!$user || !$passwordsMatch) {
+            throw new ValidationException(["password" => ["Invalid credentials"]]);
+        }
+
+        session_regenerate_id();
+
+        $_SESSION["user"] = $user["id"];
+    }
+
+    public function logout()
+    {
+        unset($_SESSION["user"]);
+
+        session_regenerate_id();
     }
 }
