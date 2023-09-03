@@ -24,10 +24,22 @@ class HomeController
 
         $searchTerm = $_GET["s"] ?? null;
 
-        $transactions = $this->transactionService->getUserTransactions(
+        [$transactions, $count] = $this->transactionService->getUserTransactions(
             $length,
             $offset
         );
+
+        $lastPage = ceil($count / $length);
+        $pages = $lastPage ? range(1, $lastPage) : [];
+
+        $pageLinks = array_map(
+            fn ($pageNum) => http_build_query([
+                "p" => $pageNum,
+                "s" => $searchTerm
+            ]),
+            $pages
+        );
+
         echo $this->view->render(
             "/index.php",
             [
@@ -36,7 +48,14 @@ class HomeController
                 "previusPageQuery" => http_build_query([
                     "p" => $page - 1,
                     "s" => $searchTerm
-                ])
+                ]),
+                "lastPage" => $lastPage,
+                "nextPageQuery" => http_build_query([
+                    "p" => $page + 1,
+                    "s" => $searchTerm
+                ]),
+                "pageLinks" => $pageLinks,
+                "searchTerm" => $searchTerm
             ]
         );
     }
