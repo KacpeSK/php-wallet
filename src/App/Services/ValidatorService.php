@@ -56,7 +56,6 @@ class ValidatorService
         ]);
     }
 
-    //WIP//
     public function validateTransaction(array $transData)
     {
         $this->validator->validate($transData, [

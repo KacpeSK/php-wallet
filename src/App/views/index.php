@@ -5,7 +5,7 @@
     <div class="flex items-center justify-between border-b border-gray-200 pb-4">
         <h4 class="font-medium">Transaction List</h4>
         <div class="flex space-x-4">
-            <a href="/transactions" class="flex items-center p-2 bg-sky-50 text-xs text-sky-900 hover:bg-sky-500 hover:text-white transition rounded">
+            <a href="/transaction" class="flex items-center p-2 bg-sky-50 text-xs text-sky-900 hover:bg-sky-500 hover:text-white transition rounded">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -72,7 +72,7 @@
                     <td class="p-4 text-sm text-gray-600"><?php echo e($transaction["formatted_date"]); ?></td>
                     <!-- Actions -->
                     <td class="p-4 text-sm text-gray-600 flex justify-center space-x-2">
-                        <a href="#" class="p-2 bg-amber-50 text-xs text-amber-900 hover:bg-amber-500 hover:text-white transition rounded">
+                        <a href="/transaction/<?php echo e($transaction["id"]); ?>/receipt" class="p-2 bg-amber-50 text-xs text-amber-900 hover:bg-amber-500 hover:text-white transition rounded">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25" />
                             </svg>
