@@ -1,2 +1,2 @@
 # phpiggy
- A PHP application for tracking expenses.
+A PHP application for tracking expenses. This is an attempt to create a basic framework with pure PHP. Just to get the feel and a better understanding of framework inner workings so I can reuse the knowledge in future projects with more advanced frameworks (Laravel). This is just form developing purposes. You can use the code in any way you like, just keep in mind this is just a basic framework not suited for commercial purposes.
