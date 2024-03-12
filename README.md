@@ -1,6 +1,6 @@
-# phpiggy
+# php-wallet
 
-![1_jZHMUYiSpf1bBg9kKwXkAA](https://github.com/KacpeSK/phpiggy/assets/142713164/9295c7bc-5231-46bc-9690-1fa5702127da)
+<img src="https://github.com/KacpeSK/phpiggy/assets/142713164/9295c7bc-5231-46bc-9690-1fa5702127da" width="150px"/>
 
 
 PHP Backend Exploration Project: Expense Tracking Application
